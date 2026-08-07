@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Módulo SUNAT (Administrador)</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    
+    <!-- SDK Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+</head>
+<body class="admin-body">
+
+    <!-- Menú Lateral / Sidebar del Jefe -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+            <h2>R&B 👑</h2>
+            <span>Panel Administrador</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">📊 Dashboard</a>
+            <a href="inventario.html" class="nav-item">📦 Inventario</a>
+            <a href="ventas.html" class="nav-item">💳 Ventas</a>
+            <a href="compras.html" class="nav-item">🛒 Compras</a>
+            <a href="clientes.html" class="nav-item">👥 Clientes</a>
+            <a href="proveedores.html" class="nav-item">🏢 Proveedores</a>
+            <a href="caja.html" class="nav-item">💰 Caja</a>
+            <a href="reportes.html" class="nav-item">📈 Reportes</a>
+            <a href="sunat.html" class="nav-item active">🏛️ SUNAT</a>
+            <a href="usuarios.html" class="nav-item">👤 Usuarios</a>
+            <a href="configuracion.html" class="nav-item">⚙️ Configuración</a>
+            <a href="auditoria.html" class="nav-item">🔍 Auditoría</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button type="button" onclick="logoutUser()" class="btn-logout">🚪 Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="admin-main">
+        
+        <!-- Encabezado -->
+        <header class="admin-header">
+            <div>
+                <h1>Gestión y Monitoreo SUNAT</h1>
+                <p>Facturación electrónica, reintento de envíos, consulta de CDR y resúmenes diarios</p>
+            </div>
+            <div class="header-status" style="display: flex; gap: 10px;">
+                <button type="button" id="btn-enviar-pendientes" class="btn-primary">🚀 Enviar Pendientes</button>
+            </div>
+        </header>
+
+        <!-- Filtros y Búsqueda -->
+        <section class="card" style="margin-bottom: 20px; padding: 16px;">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <input type="text" id="buscar-comprobante-sunat" placeholder="🔍 Buscar por número (Ej: F001-0001, B001-0005)..." style="flex: 1; min-width: 250px; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                <select id="filtro-tipo-doc-sunat" style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                    <option value="">Todos los Documentos</option>
+                    <option value="01">Facturas (01)</option>
+                    <option value="03">Boletas (03)</option>
+                    <option value="07">Notas de Crédito (07)</option>
+                </select>
+                <select id="filtro-estado-envio" style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                    <option value="">Todos los Estados</option>
+                    <option value="ACEPTADO">Aceptados</option>
+                    <option value="PENDIENTE">Pendientes</option>
+                    <option value="RECHAZADO">Rechazados / Con Observación</option>
+                </select>
+                <input type="date" id="fecha-sunat" style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+            </div>
+        </section>
+
+        <!-- Tabla de Comprobantes Electrónicos -->
+        <section class="card" style="padding: 16px; overflow-x: auto;">
+            <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #e5e7eb; text-align: left;">
+                        <th style="padding: 12px;">Comprobante</th>
+                        <th style="padding: 12px;">Emisión</th>
+                        <th style="padding: 12px;">Cliente / RUC-DNI</th>
+                        <th style="padding: 12px;">Total (S/)</th>
+                        <th style="padding: 12px;">Estado SUNAT</th>
+                        <th style="padding: 12px;">Código / Respuesta CDR</th>
+                        <th style="padding: 12px;">Archivos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-sunat">
+                    <!-- Contenedor vacío para renderizar con JS desde Supabase -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Scripts del Sistema -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/admin/sunat.js"></script>
+</body>
+</html>

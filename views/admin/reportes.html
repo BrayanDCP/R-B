@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Reportes y Estadísticas (Administrador)</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    
+    <!-- SDK Supabase y Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-body">
+
+    <!-- Menú Lateral / Sidebar del Jefe -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+            <h2>R&B 👑</h2>
+            <span>Panel Administrador</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">📊 Dashboard</a>
+            <a href="inventario.html" class="nav-item">📦 Inventario</a>
+            <a href="ventas.html" class="nav-item">💳 Ventas</a>
+            <a href="compras.html" class="nav-item">🛒 Compras</a>
+            <a href="clientes.html" class="nav-item">👥 Clientes</a>
+            <a href="proveedores.html" class="nav-item">🏢 Proveedores</a>
+            <a href="caja.html" class="nav-item">💰 Caja</a>
+            <a href="reportes.html" class="nav-item active">📈 Reportes</a>
+            <a href="sunat.html" class="nav-item">🏛️ SUNAT</a>
+            <a href="usuarios.html" class="nav-item">👤 Usuarios</a>
+            <a href="configuracion.html" class="nav-item">⚙️ Configuración</a>
+            <a href="auditoria.html" class="nav-item">🔍 Auditoría</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button type="button" onclick="logoutUser()" class="btn-logout">🚪 Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="admin-main">
+        
+        <!-- Encabezado -->
+        <header class="admin-header">
+            <div>
+                <h1>Reportes Generales y Estadísticas</h1>
+                <p>Generación de informes de rendimientos, utilidad y ventas para R&B</p>
+            </div>
+            <div class="header-status" style="display: flex; gap: 10px;">
+                <button type="button" id="btn-exportar-excel" class="btn-primary" style="background: #15803d;">📥 Exportar Excel</button>
+                <button type="button" id="btn-exportar-pdf" class="btn-primary" style="background: #b91c1c;">📄 Exportar PDF</button>
+            </div>
+        </header>
+
+        <!-- Filtros de Período y Módulo -->
+        <section class="card" style="margin-bottom: 20px; padding: 16px;">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <select id="tipo-reporte" style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; flex: 1; min-width: 200px;">
+                    <option value="ventas">Reporte de Ventas por Período</option>
+                    <option value="mas-vendidos">Prendas Más Vendidas</option>
+                    <option value="utilidad">Ganancias y Margen de Utilidad</option>
+                    <option value="vendedora">Rendimiento por Vendedora</option>
+                    <option value="inventario">Valorización de Inventario</option>
+                </select>
+                <input type="date" id="reporte-fecha-inicio" style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                <input type="date" id="reporte-fecha-fin" style="padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                <button type="button" id="btn-generar-reporte" class="btn-primary">🔍 Generar</button>
+            </div>
+        </section>
+
+        <!-- Gráfico del Reporte -->
+        <section class="card" style="padding: 16px; margin-bottom: 20px;">
+            <h3 id="titulo-grafico" style="margin-top: 0; margin-bottom: 12px;">Vista Gráfica del Reporte</h3>
+            <div style="max-height: 350px; position: relative;">
+                <canvas id="chartReportes"></canvas>
+            </div>
+        </section>
+
+        <!-- Tabla Detallada del Reporte -->
+        <section class="card" style="padding: 16px; overflow-x: auto;">
+            <h3 style="margin-top: 0; margin-bottom: 12px;">Detalle de Datos</h3>
+            <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+                <thead id="tabla-reportes-head">
+                    <tr style="border-bottom: 2px solid #e5e7eb; text-align: left;">
+                        <th style="padding: 12px;">Concepto</th>
+                        <th style="padding: 12px;">Cantidad</th>
+                        <th style="padding: 12px;">Ingreso Total</th>
+                        <th style="padding: 12px;">Costo</th>
+                        <th style="padding: 12px;">Ganancia Neta</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-reportes-body">
+                    <!-- Contenedor vacío para insertar filas mediante JS -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Scripts del Sistema -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/admin/reportes.js"></script>
+</body>
+</html>

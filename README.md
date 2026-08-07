@@ -1,16 +1,37 @@
-# R.O.S.S.Y - Sistema Punto de Venta (Módulo Vendedora)
+# R.O.S.S.Y - Sistema de Gestión Comercial y Facturación
 
-Sistema de gestión y ventas optimizado para celular, con sincronización en tiempo real y soporte para comprobantes.
+Sistema de gestión comercial, control de inventario y facturación electrónica adaptado a la normativa de SUNAT (Perú). Diseñado para la administración centralizada de inventarios, ventas, compras, movimientos de caja, auditoría y reportes estadísticos.
 
-## Módulo de Vendedora
-Este módulo está diseñado exclusivamente para el uso operativo en tienda.
+---
 
-### Funcionalidades
-* **Inicio**: Resumen del día y estado de caja.
-* **Nueva Venta**: Buscador rápido, carrito, métodos de pago y emisión de comprobantes.
-* **Historial**: Consulta de ventas realizadas en el día (solo lectura).
-* **Productos**: Consulta de stock, tallas y colores.
-* **Perfil**: Gestión de credenciales básicas.
+## 🚀 Tecnologías Utilizadas
 
-## Estructura de Vista
-Todas las pantallas de la trabajadora se encuentran en `views/vendedora/`.
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Base de Datos & Backend:** [Supabase](https://supabase.com/) (PostgreSQL, Auth, Edge Functions)
+- **Gráficos & Visualizaciones:** [Chart.js](https://www.chartjs.org/)
+- **Facturación & Clientes:** Servicios web / APIs para consulta de DNI/RUC y emisión de comprobantes SUNAT (Boletas / Facturas).
+
+---
+
+## 📂 Estructura del Proyecto
+
+```text
+/
+├── css/
+│   └── admin.css            # Estilos globales y componentes del panel administrativo
+├── js/
+│   └── admin/
+│       ├── inventario.js    # Gestión de productos, stock y categorías
+│       ├── ventas.js        # Historial de ventas, utilidades y estado SUNAT
+│       ├── compras.js       # Registro de compras y control de proveedores
+│       ├── clientes.js      # Directorio de clientes e historial comercial
+│       ├── proveedores.js   # Directorio de proveedores y talleres
+│       ├── caja.js         # Arqueo de caja, ingresos, egresos y saldos
+│       ├── reportes.js      # Métricas dinámicas y gráficos con Chart.js
+│       ├── sunat.js         # Validaciones DNI/RUC y payload de comprobantes
+│       ├── usuarios.js      # Administración de usuarios y permisos
+│       ├── configuracion.js # Datos de empresa, IGV y correlativos
+│       ├── auditoria.js     # Trazabilidad de eventos y exportación de logs
+│       └── notifications.js # Alertas flotantes (Toasts) y avisos de stock bajo
+├── .gitignore
+└── README.md

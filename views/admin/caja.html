@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Control de Caja (Administrador)</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    
+    <!-- SDK Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+</head>
+<body class="admin-body">
+
+    <!-- Menú Lateral / Sidebar del Jefe -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+            <h2>R&B 👑</h2>
+            <span>Panel Administrador</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">📊 Dashboard</a>
+            <a href="inventario.html" class="nav-item">📦 Inventario</a>
+            <a href="ventas.html" class="nav-item">💳 Ventas</a>
+            <a href="compras.html" class="nav-item">🛒 Compras</a>
+            <a href="clientes.html" class="nav-item">👥 Clientes</a>
+            <a href="proveedores.html" class="nav-item">🏢 Proveedores</a>
+            <a href="caja.html" class="nav-item active">💰 Caja</a>
+            <a href="reportes.html" class="nav-item">📈 Reportes</a>
+            <a href="sunat.html" class="nav-item">🏛️ SUNAT</a>
+            <a href="usuarios.html" class="nav-item">👤 Usuarios</a>
+            <a href="configuracion.html" class="nav-item">⚙️ Configuración</a>
+            <a href="auditoria.html" class="nav-item">🔍 Auditoría</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button type="button" onclick="logoutUser()" class="btn-logout">🚪 Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="admin-main">
+        
+        <!-- Encabezado -->
+        <header class="admin-header">
+            <div>
+                <h1>Gestión de Caja y Arqueos</h1>
+                <p>Apertura, movimientos en efectivo/digital y cierre de turno</p>
+            </div>
+            <div class="header-status" style="display: flex; gap: 10px;">
+                <button type="button" id="btn-registrar-movimiento" class="btn-primary">➕ Movimiento de Caja</button>
+                <button type="button" id="btn-cerrar-caja" class="btn-secondary" style="background: #dc2626; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">🔒 Arqueo / Cierre</button>
+            </div>
+        </header>
+
+        <!-- Resumen de Caja Actual -->
+        <section class="metrics-grid" style="margin-bottom: 20px;">
+            <div class="metric-card">
+                <span class="metric-title">Saldo Inicial</span>
+                <span class="metric-value" id="caja-monto-inicial">S/ 0.00</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Ingresos Totales</span>
+                <span class="metric-value" id="caja-ingresos" style="color: #16a34a;">S/ 0.00</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Egresos / Gastos</span>
+                <span class="metric-value" id="caja-egresos" style="color: #dc2626;">S/ 0.00</span>
+            </div>
+            <div class="metric-card highlight">
+                <span class="metric-title">Saldo Actual en Caja</span>
+                <span class="metric-value" id="caja-saldo-actual">S/ 0.00</span>
+            </div>
+        </section>
+
+        <!-- Tabla de Movimientos del Día -->
+        <section class="card" style="padding: 16px; overflow-x: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="margin: 0;">Historial de Movimientos de Caja</h3>
+                <input type="date" id="fecha-caja" style="padding: 8px; border: 1px solid #d1d5db; border-radius: 6px;">
+            </div>
+            <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #e5e7eb; text-align: left;">
+                        <th style="padding: 12px;">Hora</th>
+                        <th style="padding: 12px;">Tipo</th>
+                        <th style="padding: 12px;">Concepto / Descripción</th>
+                        <th style="padding: 12px;">Medio de Pago</th>
+                        <th style="padding: 12px;">Usuario</th>
+                        <th style="padding: 12px;">Monto (S/)</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-caja-movimientos">
+                    <!-- Contenedor vacío listo para renderizar desde JS -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Scripts del Sistema -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/admin/caja.js"></script>
+</body>
+</html>

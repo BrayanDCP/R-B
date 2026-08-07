@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Proveedores (Administrador)</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    
+    <!-- SDK Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+</head>
+<body class="admin-body">
+
+    <!-- Menú Lateral / Sidebar del Jefe -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+            <h2>R&B 👑</h2>
+            <span>Panel Administrador</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">📊 Dashboard</a>
+            <a href="inventario.html" class="nav-item">📦 Inventario</a>
+            <a href="ventas.html" class="nav-item">💳 Ventas</a>
+            <a href="compras.html" class="nav-item">🛒 Compras</a>
+            <a href="clientes.html" class="nav-item">👥 Clientes</a>
+            <a href="proveedores.html" class="nav-item active">🏢 Proveedores</a>
+            <a href="caja.html" class="nav-item">💰 Caja</a>
+            <a href="reportes.html" class="nav-item">📈 Reportes</a>
+            <a href="sunat.html" class="nav-item">🏛️ SUNAT</a>
+            <a href="usuarios.html" class="nav-item">👤 Usuarios</a>
+            <a href="configuracion.html" class="nav-item">⚙️ Configuración</a>
+            <a href="auditoria.html" class="nav-item">🔍 Auditoría</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button type="button" onclick="logoutUser()" class="btn-logout">🚪 Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="admin-main">
+        
+        <!-- Encabezado -->
+        <header class="admin-header">
+            <div>
+                <h1>Gestión de Proveedores</h1>
+                <p>Directorio de talleres, distribuidores de telas y suministros</p>
+            </div>
+            <div class="header-status">
+                <button type="button" id="btn-nuevo-proveedor" class="btn-primary">➕ Registrar Proveedor</button>
+            </div>
+        </header>
+
+        <!-- Búsqueda y Filtros -->
+        <section class="card" style="margin-bottom: 20px; padding: 16px;">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <input type="text" id="buscar-proveedor" placeholder="🔍 Buscar por RUC, razón social, contacto o teléfono..." style="flex: 1; min-width: 250px; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+            </div>
+        </section>
+
+        <!-- Tabla Principal de Proveedores -->
+        <section class="card" style="padding: 16px; overflow-x: auto;">
+            <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #e5e7eb; text-align: left;">
+                        <th style="padding: 12px;">RUC</th>
+                        <th style="padding: 12px;">Empresa / Razón Social</th>
+                        <th style="padding: 12px;">Contacto</th>
+                        <th style="padding: 12px;">Teléfono</th>
+                        <th style="padding: 12px;">Correo / Dirección</th>
+                        <th style="padding: 12px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-proveedores">
+                    <!-- Contenedor vacío listo para cargar datos desde JS -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Scripts del Sistema -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/admin/proveedores.js"></script>
+</body>
+</html>

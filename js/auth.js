@@ -1,5 +1,5 @@
 /* 
- * R&B - Autenticación y Manejo de Sesión (Supabase)
+ * R&B - Autenticación y Manejo de Sesiones
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnLogin = document.getElementById('btn-login');
             const errorMessage = document.getElementById('error-message');
 
-            // Ocultar mensajes previos y deshabilitar botón durante el proceso
             errorMessage.classList.add('hidden');
             errorMessage.textContent = '';
             btnLogin.disabled = true;
             btnLogin.textContent = 'Ingresando...';
 
-            // Mapeo automático de usuario simple (ej: "ryb") a correo interno ("ryb@rb.com")
-            const email = usernameInput.includes('@') 
-                ? usernameInput 
-                : `${usernameInput.toLowerCase()}@rb.com`;
+            // Mapeo automático de usuario simple a correo interno (@rb.com)
+            const usernameClean = usernameInput.toLowerCase();
+            const email = usernameClean.includes('@') 
+                ? usernameClean 
+                : `${usernameClean}@rb.com`;
 
             try {
                 const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -35,8 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Usuario o contraseña incorrectos.');
                 }
 
-                // Redirección inmediata a la interfaz de la vendedora
-                window.location.href = 'views/vendedora/inicio.html';
+                // DNI o usuario del Administrador / Jefe
+                const adminUsers = ['73248067', '73248067@rb.com', 'admin@rb.com'];
+
+                if (adminUsers.includes(data.user.email) || adminUsers.includes(usernameClean)) {
+                    // Redirige al Panel del Jefe
+                    window.location.href = 'views/admin/dashboard.html';
+                } else {
+                    // Redirige a la vista Móvil de Vendedora
+                    window.location.href = 'views/vendedora/inicio.html';
+                }
 
             } catch (err) {
                 errorMessage.textContent = err.message || 'Error de conexión al iniciar sesión.';
@@ -65,7 +73,7 @@ async function checkAuthSession() {
 }
 
 /**
- * Cierra la sesión activa y regresa a la pantalla de Login
+ * Cierra la sesión activa y regresa al Login
  */
 async function logoutUser() {
     try {
