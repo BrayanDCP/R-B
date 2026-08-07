@@ -3,33 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R&B - Iniciar Sesión</title>
+    <title>R.O.S.S.Y - Iniciar Sesión</title>
     
-    <!-- Hojas de estilo -->
+    <!-- Hojas de estilo globales y componentes -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/components.css">
     
-    <!-- SDK Oficial de Supabase con versión estable -->
+    <!-- SDK Oficial de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
 </head>
 <body class="login-body">
 
     <div class="login-container">
-        <!-- Encabezado / Identidad de marca -->
+        <!-- Identidad comercial R.O.S.S.Y -->
         <div class="login-header">
-            <h1>R&B</h1>
-            <p>Sistema de Ventas</p>
+            <h1>R.O.S.S.Y</h1>
+            <p>Sistema de Gestión Comercial & Punto de Venta</p>
         </div>
 
-        <!-- Formulario de Login -->
+        <!-- Formulario de Autenticación -->
         <form id="login-form" class="login-form">
+            
+            <!-- Selector visual de Perfil/Rol -->
             <div class="form-group">
-                <label for="username">Usuario</label>
+                <label for="user-role">Perfil de Ingreso</label>
+                <select id="user-role" class="form-control" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-weight: 600;">
+                    <option value="VENDEDOR">🛍️ Vendedora / POS</option>
+                    <option value="ADMIN">🛡️ Administrador</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Correo / Usuario</label>
                 <input 
-                    type="text" 
+                    type="email" 
                     id="username" 
-                    placeholder="Ingrese su usuario" 
+                    placeholder="ejemplo@rossy.com" 
                     required 
                     autocomplete="username"
                 >
@@ -46,18 +56,19 @@
                 >
             </div>
 
-            <!-- Contenedor para mostrar errores de credenciales -->
-            <div id="error-message" class="error-message hidden"></div>
+            <!-- Contenedor dinámico de alertas y errores -->
+            <div id="error-message" class="error-message hidden" style="color: #dc2626; font-size: 0.875rem; margin-bottom: 12px; text-align: center;"></div>
 
-            <button type="submit" id="btn-login" class="btn-primary btn-large">
+            <button type="submit" id="btn-login" class="btn-primary btn-large" style="width: 100%;">
                 Ingresar al Sistema
             </button>
         </form>
     </div>
 
-    <!-- Scripts del sistema -->
+    <!-- Scripts de configuración, autenticación y notificaciones -->
     <script src="js/supabase-config.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/admin/notifications.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
