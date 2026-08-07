@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Iniciar Sesión</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/components.css">
+    
+    <!-- SDK Oficial de Supabase con versión estable -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <!-- Encabezado / Identidad de marca -->
+        <div class="login-header">
+            <h1>R&B</h1>
+            <p>Sistema de Ventas</p>
+        </div>
+
+        <!-- Formulario de Login -->
+        <form id="login-form" class="login-form">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    placeholder="Ingrese su usuario" 
+                    required 
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="••••••••" 
+                    required 
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <!-- Contenedor para mostrar errores de credenciales -->
+            <div id="error-message" class="error-message hidden"></div>
+
+            <button type="submit" id="btn-login" class="btn-primary btn-large">
+                Ingresar al Sistema
+            </button>
+        </form>
+    </div>
+
+    <!-- Scripts del sistema -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

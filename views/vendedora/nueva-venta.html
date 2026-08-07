@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Nueva Venta</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    
+    <!-- SDK Oficial de Supabase desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+</head>
+<body class="main-content">
+
+    <!-- Encabezado con buscador -->
+    <header class="card" style="margin: 16px 16px 8px 16px; padding: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 style="font-size: 1.25rem;">Punto de Venta</h2>
+            <span class="badge badge-success">Vendedora: RYB</span>
+        </div>
+        
+        <!-- Campo de búsqueda rápida de prendas -->
+        <div class="form-group" style="margin-bottom: 0;">
+            <input 
+                type="text" 
+                id="search-product" 
+                placeholder="🔍 Buscar por prendas, modelo o código..."
+                autocomplete="off"
+            >
+        </div>
+    </header>
+
+    <!-- Catálogo de productos disponibles -->
+    <main style="padding: 0 16px;">
+        <div id="lista-productos" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Contenedor listo para cargar prendas desde JavaScript -->
+        </div>
+    </main>
+
+    <!-- Resumen flotante del Carrito / Botón de Cobro -->
+    <div style="position: fixed; bottom: 65px; left: 0; width: 100%; padding: 12px 16px; background-color: var(--card-bg); border-top: 1px solid var(--border-color); box-shadow: 0 -4px 10px rgba(0,0,0,0.05); z-index: 900;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 0.9rem; color: var(--text-secondary);">Items en carrito: <strong id="cant-items" style="color: var(--text-primary);">0</strong></span>
+            <span style="font-size: 1.2rem; font-weight: 800;">Total: <span id="monto-carrito" style="color: var(--success-color);">S/ 0.00</span></span>
+        </div>
+        <button type="button" id="btn-procesar-pago" class="btn-primary btn-large" style="background-color: var(--success-color);">
+            💳 Cobrar Venta
+        </button>
+    </div>
+
+    <!-- Menú de Navegación Inferior Móvil -->
+    <nav class="mobile-nav">
+        <a href="inicio.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">🏠</span>
+            <span>Inicio</span>
+        </a>
+        <a href="nueva-venta.html" class="mobile-nav-item active">
+            <span style="font-size: 1.2rem;">🛒</span>
+            <span>Vender</span>
+        </a>
+        <a href="historial.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">📄</span>
+            <span>Ventas</span>
+        </a>
+        <a href="productos.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">📦</span>
+            <span>Stock</span>
+        </a>
+        <a href="perfil.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">👤</span>
+            <span>Perfil</span>
+        </a>
+    </nav>
+
+    <!-- Scripts del sistema -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/app.js"></script>
+</body>
+</html>

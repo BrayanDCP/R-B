@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&B - Inventario de Productos</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mobile.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    
+    <!-- SDK Oficial de Supabase desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+</head>
+<body class="main-content">
+
+    <!-- Encabezado de inventario -->
+    <header class="card" style="margin: 16px 16px 12px 16px; padding: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h2 style="font-size: 1.25rem;">Inventario R&B</h2>
+            <span id="total-prendas" class="badge badge-success">0 prendas</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">Consulta el stock actual de prendas</p>
+    </header>
+
+    <!-- Lista de productos -->
+    <main style="padding: 0 16px;">
+        <div id="lista-inventario" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Contenedor vacío listo para renderizar el stock desde JS -->
+        </div>
+    </main>
+
+    <!-- Menú de Navegación Inferior Móvil -->
+    <nav class="mobile-nav">
+        <a href="inicio.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">🏠</span>
+            <span>Inicio</span>
+        </a>
+        <a href="nueva-venta.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">🛒</span>
+            <span>Vender</span>
+        </a>
+        <a href="historial.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">📄</span>
+            <span>Ventas</span>
+        </a>
+        <a href="productos.html" class="mobile-nav-item active">
+            <span style="font-size: 1.2rem;">📦</span>
+            <span>Stock</span>
+        </a>
+        <a href="perfil.html" class="mobile-nav-item">
+            <span style="font-size: 1.2rem;">👤</span>
+            <span>Perfil</span>
+        </a>
+    </nav>
+
+    <!-- Scripts del sistema -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/app.js"></script>
+</body>
+</html>

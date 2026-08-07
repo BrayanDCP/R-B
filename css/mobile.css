@@ -1,0 +1,56 @@
+/* Adaptación visual y controles táctiles para celulares */
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Evita zoom automático en inputs en iOS/Android */
+    }
+
+    .login-container {
+        padding: 24px 18px;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    /* Navegación y menús táctiles */
+    .mobile-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
+    }
+
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+    }
+
+    .mobile-nav-item.active {
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    /* Espaciado para evitar que el menú inferior tape el contenido */
+    .main-content {
+        padding-bottom: 70px;
+    }
+}
+
+/* Áreas de toque optimizadas para dedos (mínimo 48px) */
+button, 
+input, 
+select {
+    min-height: 48px;
+    touch-action: manipulation;
+}
